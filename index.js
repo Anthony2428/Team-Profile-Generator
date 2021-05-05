@@ -9,19 +9,42 @@ const startApplication = async () => {
     console.log(`This team's manager is ${teamManager.name}`);
     const teamMembers = await teamMembersInput();
 
-    console.log(`This team's members are:`);
+    console.log(`${teamManager.name}'s Team Members are:`);
     listedMembers.forEach(member => console.log(`${member.role}: ${member.name}`));
     console.log(`Creating HTML...`);
-    // const newHTML = `<html> <p>My name is ${ teamManager.managerName}</br> 
-    // I am from ${ location }</br>
-    // ${ bio }</br>
-    // LinkedIn URL: <a href="https://${ linkedInURL }">Go to LinkedIn Page</a></br>
-    // GitHub URL: <a href="https://github.com/${ githubUserName }">Go to GitHub Page</a> </html> `
+    const team = [];
+    await listedMembers.forEach(member => {
+        team.push(`<div class='card' id='memberCard'>
+        <ul id='memberInfo'>
+        <li><h3><strong>${ member.role }</strong></h3></li>
+        <li>Name: ${ member.name }</li>
+        <li>ID: ${ member.id }</li>
+        <li>Email: ${ member.email }</li>
+        <li>${ member.misc }</li>
+        </div>`);
+        return;
+    });
+    const newHTML = `<html>
+    <head>
+    <title>${teamManager.name}'s Engineer Team</title>
+    <link rel='stylesheet' href='style.css'>
+    </head>
+    <body>
+    <div class='card' id='managerCard'> 
+    <ul id='memberInfo'> 
+    <li><h3><strong>${ teamManager.role }</strong></h3></li>
+    <li>Name: ${ teamManager.name }</li>
+    <li>ID: ${ teamManager.employeeID }</li>
+    <li>Email: ${ teamManager.email }</li>
+    <li>Office Number: ${ teamManager.officeNumber }</li>
+    </div>
+    <div id='team'>${team.join('')}</div>
+    </body></html>`;
     
-    // fs.writeFile('index.html', newHTML, 'utf8', function (err) {
-    // if (err) throw err;
-    // console.log('Saved!');
-//});
+    fs.writeFile('index.html', newHTML, 'utf8', function (err) {
+    if (err) throw err;
+    console.log('HTML Created!');
+});
 }
 const teamMembersInput = async () => {
     let next = false;
@@ -87,7 +110,7 @@ const addIntern = async () => {
             name: response.internName,
             id: response.internID,
             email: response.internEmail,
-            school: response.internSchool
+            misc: `School: ${response.internSchool}`
         };
         return newIntern;
     });
@@ -122,7 +145,7 @@ const addEngineer = async () => {
             name: response.engineerName,
             id: response.engineerID,
             email: response.engineerEmail,
-            github: response.engineerUsername
+            misc: `GitHub: ${response.engineerUsername}`
         };
         return newEngineer;
     });

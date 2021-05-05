@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial;
+    margin: auto;
+    background-color: #12232E;
+    color: white;
+}
+li {
+    padding: 5px;
+}
+.card {
+    width: 250px;
+    height: 250px;
+    text-align: center;
+    margin: auto;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+#managerCard {
+    background-color: #007CC7;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+#memberCard {
+    background-color: #4DA8DA;
+}
+#memberInfo {
+    list-style: none;
+    flex-direction: column;
+    padding: 15px;
+    text-align: center;
+}
+#team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
