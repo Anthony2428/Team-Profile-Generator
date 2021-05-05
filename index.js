@@ -3,7 +3,7 @@ const fs = require('fs');
 const listedMembers = [];
 
 
-const startApplication = async () => {
+const applicationEngine = async () => {
 
     const teamManager = await teamManagerInput();
     console.log(`This team's manager is ${teamManager.name}`);
@@ -19,7 +19,7 @@ const startApplication = async () => {
         <li><h3><strong>${ member.role }</strong></h3></li>
         <li>Name: ${ member.name }</li>
         <li>ID: ${ member.id }</li>
-        <li>Email: ${ member.email }</li>
+        <li><a href="mailto:${ teamManager.email }">Email: ${ member.email }</a></li>
         <li>${ member.misc }</li>
         </div>`);
         return;
@@ -35,7 +35,7 @@ const startApplication = async () => {
     <li><h3><strong>${ teamManager.role }</strong></h3></li>
     <li>Name: ${ teamManager.name }</li>
     <li>ID: ${ teamManager.employeeID }</li>
-    <li>Email: ${ teamManager.email }</li>
+    <li><a href="mailto:${ teamManager.email }">Email: ${ teamManager.email }</a></li>
     <li>Office Number: ${ teamManager.officeNumber }</li>
     </div>
     <div id='team'>${team.join('')}</div>
@@ -145,7 +145,7 @@ const addEngineer = async () => {
             name: response.engineerName,
             id: response.engineerID,
             email: response.engineerEmail,
-            misc: `GitHub: ${response.engineerUsername}`
+            misc: `<a href="https://github.com/${response.engineerUsername}">GitHub: ${response.engineerUsername}</a>`
         };
         return newEngineer;
     });
@@ -185,5 +185,5 @@ const teamManagerInput = async () => {
     });
     return manager;
 }
-startApplication();
+applicationEngine();
 
