@@ -18,7 +18,7 @@ No license was needed for this application. <br />
 ## Contributors
 Anthony2428 <br />
 ## Tests
-Add video and screenshots here<br />
+![Walkthrough of Web App:](./TeamProfile-Generator-Video.mov)<br />
 ## Contact 
 Leave full name and concerns in email.<br /> 
 Email: alopez0218.al@gmail.com<br /><br />
